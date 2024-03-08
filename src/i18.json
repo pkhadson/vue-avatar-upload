@@ -1,26 +1,34 @@
 {
-  "zh-CN":{
-    "title":"编辑头像",
-    "changeAvatar":"更换头像",
-    "rotate":"旋转90度",
-    "preview":"预览",
-    "cancel":"取消",
-    "confirm":"确定"
+  "zh-CN": {
+    "title": "编辑头像",
+    "changeAvatar": "更换头像",
+    "rotate": "旋转90度",
+    "preview": "预览",
+    "cancel": "取消",
+    "confirm": "确定"
   },
-  "zh-TW":{
-    "title":"編輯頭像",
-    "changeAvatar":"更換頭像",
-    "rotate":"旋轉90度",
-    "preview":"預覽",
-    "cancel":"取消",
-    "confirm":"確定"
+  "zh-TW": {
+    "title": "編輯頭像",
+    "changeAvatar": "更換頭像",
+    "rotate": "旋轉90度",
+    "preview": "預覽",
+    "cancel": "取消",
+    "confirm": "確定"
   },
-  "en":{
-    "title":"Edit Avatar",
-    "changeAvatar":"Change Avatar",
-    "rotate":"Rotate 90°",
-    "preview":"Preview",
-    "cancel":"Cancel",
-    "confirm":"Confirm"
+  "en": {
+    "title": "Edit Avatar",
+    "changeAvatar": "Change Avatar",
+    "rotate": "Rotate 90°",
+    "preview": "Preview",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "pt-BR": {
+    "title": "Editar Avatar",
+    "changeAvatar": "Mudar Avatar",
+    "rotate": "Girar 90°",
+    "preview": "Pré-visualizar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar"
   }
 }

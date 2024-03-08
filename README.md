@@ -1,13 +1,20 @@
 # A vue3 ts base component for avatar upload and crop
+
 ![image](https://github.com/derlans/vue-avatar-upload/blob/master/imgs/preview.gif)
+
 ## how to use
+
 ## [demo](http://avatar-upload.derlan.top/)
+
 ## [codesandbox](https://codesandbox.io/p/github/derlans/vue-avatar-upload/master?workspace=%257B%2522activeFilepath%2522%253A%2522%252Fpreview%252FApp.vue%2522%252C%2522openFiles%2522%253A%255B%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522spaces%2522%253A%257B%2522clg88ugpd000x3n6jkshxocy6%2522%253A%257B%2522key%2522%253A%2522clg88ugpd000x3n6jkshxocy6%2522%252C%2522name%2522%253A%2522Default%2522%252C%2522devtools%2522%253A%255B%257B%2522type%2522%253A%2522PREVIEW%2522%252C%2522taskId%2522%253A%2522dev%2522%252C%2522port%2522%253A3000%252C%2522key%2522%253A%2522clg896gs500ga3n6jnlvlsznz%2522%252C%2522isMinimized%2522%253Afalse%257D%255D%257D%257D%252C%2522currentSpace%2522%253A%2522clg88ugpd000x3n6jkshxocy6%2522%252C%2522spacesOrder%2522%253A%255B%2522clg88ugpd000x3n6jkshxocy6%2522%255D%252C%2522hideCodeEditor%2522%253Afalse%257D)
+
 ### import
+
 ```
   import VueAvatarUpload from 'vue-avatar-upload';
   import 'vue-avatar-upload/lib/style.css';
 ```
+
 ```
   <VueAvatarUpload
     :url="UPLOAD_AVATAR_URL"
@@ -19,108 +26,113 @@
     @success="handleSuccess"
   />
 ```
+
 ## Props
+
 ```
 interface AvatarUploadProps {
   /**
-   * @description 初始图像src init img src
+   * @description Initial image source
    */
-  avatar?: string
+  avatar?: string;
   /**
-   * @description 图片上传地址 upload url
+   * @description Image upload URL
    */
-  url?: string
+  url?: string;
   /**
-   * @description 图片上传字段名 upload field name
+   * @description Image upload field name
    */
-  field?: string
+  field?: string;
   /**
-   * @description 图片上传格式 upload file type
+   * @description Upload file format
    */
-  format?: string
+  format?: string;
   /**
-   * @description 上传携带请求头 http request headers
+   * @description HTTP request headers to carry with the upload
    */
-  headers?: Record<string, string>
+  headers?: Record<string, string>;
   /**
-   * @description 上传携带其他数据 http request data
+   * @description HTTP request data to carry with the upload
    */
-  data?: Record<string, string>
+  data?: Record<string, string>;
   /**
-   * @description 图片框宽度  img box width
+   * @description Image box width
    */
-  width?: number
+  width?: number;
   /**
-   * @description 图片框长度  img box height
+   * @description Image box height
    */
-  height?: number
+  height?: number;
   /**
-   * @description  选择框初始大小 init select box size
+   * @description Initial size of the selection box
    */
-  selectSize?: number
+  selectSize?: number;
   /**
-   * @description 是否跨域携带携带cookie cross domain with cookie
+   * @description Cross domain with cookie
    */
-  withCredentials?: boolean
+  withCredentials?: boolean;
   /**
-   * @description 上传方法 upload method
+   * @description Upload method
    */
-  method?: 'POST' | 'GET'
+  method?: 'POST' | 'GET';
   /**
-   * @description 接受的文件类型 accept file type
+   * @description Accepted file type
    */
-  accept?: string
+  accept?: string;
   /**
-   * @description 是否静止用户操作选择框 whether to still user operation selection box
+   * @description Whether to still user operation selection box
    */
-  disableSelect?: boolean
+  disableSelect?: boolean;
   /**
-   * @description 是否可以旋转 can rotate
+   * @description Can rotate
    */
-  rotate?: boolean
+  rotate?: boolean;
   /**
-   * @description 是否fixed  is fixed
+   * @description Is fixed
    */
-  fixed?: boolean
+  fixed?: boolean;
   /**
-   * @description 是否展示预览 is show preview
+   * @description Is show preview
    */
-  showPreview?: boolean
+  showPreview?: boolean;
   /**
-   * @description 预览框大小 preview box size
+   * @description Preview box size
    */
-  previewSize?: number
+  previewSize?: number;
   /**
-   * @description 自定义文字 i18n
+   * @description Custom text i18n
    */
-  i18?: I18
+  i18?: I18;
   /**
-   * @description 语言 language
+   * @description Language
    */
-  lang?: 'zh-CN' | 'zh-TW' | 'en'
+  lang?: 'zh-CN' | 'zh-TW' | 'en';
   /**
-   * @description 自定义上传  custom upload
+   * @description Custom upload
    */
-  onCustomRequest?: (file: File) => void
+  onCustomRequest?: (file: File) => void;
   /**
-   * @description 上传前钩子 返回false可以阻止上传 upload before callback if return false can prevent upload
+   * @description Upload before callback, if return false can prevent upload
    */
-  onBefoureUpload?: (file: File) => boolean | Promise<boolean>
+  onBefoureUpload?: (file: File) => boolean | Promise<boolean>;
   /**
-   * @description 上传成功钩子 upload success callback
+   * @description Upload success callback
    */
-  onSuccess?: (respose: any, file: File) => void
+  onSuccess?: (response: any, file: File) => void;
   /**
-   * @description 上传失败钩子 upload fail callback
+   * @description Upload fail callback
    */
-  onError?: (err: Error, file: File) => void
+  onError?: (err: Error, file: File) => void;
   /**
-   * @description 点击关闭按钮 click close button
+   * @description Click close button
    */
-  onClose?: () => void
+  onClose?: () => void;
 }
+
 ```
+
 ### default value
+
 ```
   url: '',
   field: 'avatar',
@@ -139,9 +151,11 @@ interface AvatarUploadProps {
 ```
 
 ## language
-built-in  ``zh-CN``  |  ``zh-TW `` |  ``en``
-you can use ``lang`` change the language
-or use ``i18`` custom text
+
+built-in `zh-CN` | `zh-TW` | `en` | `pt-BR`
+you can use `lang` change the language
+or use `i18` custom text
+
 ```
 interface I18 {
   title: string
@@ -154,4 +168,5 @@ interface I18 {
 ```
 
 ## slots
+
 ![image](https://github.com/derlans/vue-avatar-upload/blob/master/imgs/slots.png)
