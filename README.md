@@ -1,5 +1,11 @@
 # A vue3 ts base component for avatar upload and crop
 
+check emoji
+
+✅ English JS Doc  
+✅ Lang pt-BR support
+✅ Composable support - dynamic component
+
 ![image](https://github.com/derlans/vue-avatar-upload/blob/master/imgs/preview.gif)
 
 ## how to use
