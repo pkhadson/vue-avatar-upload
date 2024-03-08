@@ -1,5 +1,5 @@
 {
-  "name": "vue-avatar-upload",
+  "name": "@pkhadson/vue-avatar-upload",
   "version": "1.2.1",
   "private": false,
   "description": "A vue3 ts base component for avatar upload and crop",

@@ -4,6 +4,7 @@
       'avatar-upload-root': true,
       'avatar-upload-root-fixed': Props.fixed,
     }"
+    v-show="avatar"
   >
     <div :class="{ 'avatar-upload-fade': Props.fixed }" />
     <div :class="{ 'avatar-upload': true, 'avatar-upload-fixed': Props.fixed }">
@@ -155,19 +156,13 @@
 
 <script setup lang="ts">
 import type { ComputedRef, Ref, StyleValue } from "vue";
-import { computed, nextTick, reactive, ref, toRef, useSlots, watch } from "vue";
-import { createCutImg, getRange, uploadFile } from "./utils";
+import { computed, nextTick, reactive, ref, useSlots, watch } from "vue";
+import i18 from "./i18.json";
+import { I18 } from "./interfaces";
 import type { MRef, RefElement, Size, SizeStyle } from "./type";
 import { useBackImgOperate, useSelectOperate } from "./useOperate";
-import i18 from "./i18.json";
-interface I18 {
-  title: string;
-  changeAvatar: string;
-  rotate: string;
-  preview: string;
-  cancel: string;
-  confirm: string;
-}
+import { createCutImg, getRange, uploadFile } from "./utils";
+
 interface AvatarUploadProps {
   /**
    * @description Initial image source
@@ -248,7 +243,7 @@ interface AvatarUploadProps {
   /**
    * @description Custom upload
    */
-  onCustomRequest?: (file: File) => void;
+  onCustomRequest?: (file: File, close?: () => void) => void;
   /**
    * @description Upload before callback, if return false can prevent upload
    */
@@ -260,7 +255,7 @@ interface AvatarUploadProps {
   /**
    * @description Upload fail callback
    */
-  onError?: (err: Error, file: File) => void;
+  onError?: (err: Error, file: File, close?: () => void) => void;
   /**
    * @description Click close button
    */
@@ -283,7 +278,6 @@ const Props = withDefaults(defineProps<AvatarUploadProps>(), {
   format: "png",
   lang: "zh-CN",
   showPreview: true,
-  previewSize: 100,
 });
 const defaultI18 = (Props.i18 || i18[Props.lang] || i18["zh-CN"]) as I18;
 const slots = useSlots();
@@ -425,7 +419,7 @@ async function upload() {
     type: `image/${format}`,
   });
   if (Props.onCustomRequest) {
-    await Props.onCustomRequest(file);
+    await Props.onCustomRequest(file, Props.onClose);
     return;
   }
   if (Props.onBefoureUpload) {
@@ -436,11 +430,12 @@ async function upload() {
     headers: Props.headers,
     withCredentials: Props.withCredentials,
   })
-    .then((res) => {
-      Props.onSuccess?.(res, file);
+    .then(async (res) => {
+      await Props.onSuccess?.(res, file);
+      Props.onClose?.();
     })
     .catch((err) => {
-      Props?.onError?.(err, file);
+      Props?.onError?.(err, file, Props.onClose);
     });
 }
 const cutImg = createCutImg();
@@ -462,6 +457,12 @@ function getImgData() {
   );
   return cutImg(avatar.value, range, Props.format);
 }
+
+watch(file, (newValue, oldValue) => {
+  if (newValue && !oldValue && !avatar.value) {
+    newValue.click();
+  }
+});
 </script>
 
 <style scoped lang="scss">
@@ -617,7 +618,7 @@ function getImgData() {
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  color: red;
+  color: var(--au-text-color);
   height: 20px;
   margin-right: 10px;
 }
@@ -626,7 +627,7 @@ function getImgData() {
   align-items: center;
 }
 .icon-rotate {
-  color: red;
+  color: var(--au-text-color);
   fill: currentColor;
 }
 .avatar-upload-actions {
@@ -690,7 +691,7 @@ function getImgData() {
   }
   .avatar-button.-salmon {
     color: #ffffff;
-    background: #f32c52;
+    background: var(--au-btn-color);
   }
 }
 </style>
